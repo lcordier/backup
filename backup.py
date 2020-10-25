@@ -122,7 +122,6 @@ if __name__ == '__main__':
 
     for idx, row in enumerate(reader, 2):
         cmd, params, src, dst = [field.strip() for field in row]
-        cmd = cmd.lower()
         try:
             if '%' in src:
                 src = now.strftime(src)
@@ -130,7 +129,7 @@ if __name__ == '__main__':
             if '%' in dst:
                 dst = now.strftime(dst)
 
-            func = COMMANDS.get(cmd, exec_)
+            func = COMMANDS.get(cmd.lower(), exec_)
             if func:
                 func(cmd, params, src, dst)
             else:
