@@ -1,7 +1,0 @@
-"command","params","source","destination"
-"udiskie-mount","","/dev/sdb1/",""
-"fail","","","/media/lcordier/stuff/"
-"mkdir","-p","/media/lcordier/stuff/backup/%w/",""
-"rsync","-av","/home/lcordier/.ssh/","/media/lcordier/stuff/backup/%w/.ssh/"
-"rsync","-av","/home/lcordier/tax/","/media/lcordier/stuff/backup/%w/tax/"
-"udiskie-umount","","/dev/sdb1/",""
