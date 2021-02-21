@@ -26,8 +26,7 @@ BACKUPS = [
     (PARAMS, '~/.ssh/', 'backup/.ssh/%w/'),  # one backup per weekday, rotate
     (PARAMS, '~/.arbtt/', 'backup/.arbtt/'),
     (PARAMS, '~/.vim/', 'backup/.vim/'),
-    (PARAMS, '~/.tmux/', 'backup/.tmux/'),
-    (PARAMS, '~/.config/', 'backup/.config/'),
+    (PARAMS, '~/.config/i3/', 'backup/.config/i3/'),
     (PARAMS, '~/bin/', 'backup/bin/'),
     (PARAMS, '~/tax/', 'backup/tax/%w/'),
     (PARAMS, '~/images/', 'backup/images/'),
@@ -196,10 +195,10 @@ if __name__ == '__main__':
             else:
                 ensure_directory_exists(dst, file=True)
 
-            logger.info(f'rsync: {src} -> {dst}')
+            logger.info(f'Rsync: {src} -> {dst}')
             rsync(params, src, dst)
         except:
-            logger.exception()
+            logger.exception('Rsync error.')
 
     umount(device)
     logger.info('Backup done.')
