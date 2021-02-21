@@ -19,12 +19,20 @@ import sys
 PARAMS = '-rtD --modify-window=1 --size-only'
 
 # Add (params, src, dst) 3-tuples to the BACKUPS list.
-# All paths should end in a /
+# All directory paths should end in a /
 # ~ is expanded to the user's home directory.
 BACKUPS = [
-    (PARAMS, '~/zettelkasten/', 'backup/zettelkasten/%w/'),
-    (PARAMS, '~/.ssh/', 'backup/.ssh/%w/'),
+    (PARAMS, '~/quotes.txt', 'backup/quotes.txt'),
+    (PARAMS, '~/.ssh/', 'backup/.ssh/%w/'),  # one backup per weekday, rotate
+    (PARAMS, '~/.arbtt/', 'backup/.arbtt/'),
+    (PARAMS, '~/.vim/', 'backup/.vim/'),
+    (PARAMS, '~/.tmux/', 'backup/.tmux/'),
+    (PARAMS, '~/.config/', 'backup/.config/'),
+    (PARAMS, '~/bin/', 'backup/bin/'),
     (PARAMS, '~/tax/', 'backup/tax/%w/'),
+    (PARAMS, '~/images/', 'backup/images/'),
+    (PARAMS, '~/backgrounds/', 'backup/backgrounds/'),
+    (PARAMS, '~/zettelkasten/', 'backup/zettelkasten/'),
 ]
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -188,6 +196,7 @@ if __name__ == '__main__':
             else:
                 ensure_directory_exists(dst, file=True)
 
+            logger.info(f'rsync: {src} -> {dst}')
             rsync(params, src, dst)
         except:
             logger.exception()
