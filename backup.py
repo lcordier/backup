@@ -22,7 +22,6 @@ PARAMS = '-rtD --modify-window=1 --size-only'
 # All paths should end in a /
 # ~ is expanded to the user's home directory.
 BACKUPS = [
-    (PARAMS, '/tmp/logs/', 'backup/logs/%w/'),
     (PARAMS, '~/zettelkasten/', 'backup/zettelkasten/%w/'),
     (PARAMS, '~/.ssh/', 'backup/.ssh/%w/'),
     (PARAMS, '~/tax/', 'backup/tax/%w/'),
@@ -158,9 +157,6 @@ if __name__ == '__main__':
     now = datetime.datetime.now()
     device = os.path.basename(options.device)
 
-    # Hack.
-    umount(device)
-
     partitions_ = partitions()
     mountpoint = partitions_.get(device)
     if mountpoint:
@@ -196,5 +192,6 @@ if __name__ == '__main__':
         except:
             logger.exception()
 
+    umount(device)
     logger.info('Backup done.')
 
