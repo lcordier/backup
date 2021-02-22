@@ -2,14 +2,12 @@
 
 """ Simple way to do backups.
 """
-import csv
 import datetime
 import json
 import logging
 import logging.config
 import optparse
 import os
-from pprint import pprint
 from shlex import quote
 import subprocess
 import sys
